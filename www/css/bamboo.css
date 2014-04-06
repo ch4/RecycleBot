@@ -16,4 +16,7 @@
     .navigation-sidebar { max-width:100%; display:none; }
     .navigation-fullscreen { max-width:100%; display:none; }
     .navigation-fullscreen ul { list-style: none; padding: 0; margin: 0; width: 100%; position: relative;}
-    .navigation-fullscreen li { text-align: center; }
+    .navigation-fullscreen li { text-align: center; color: #000000;}
+    .navigation-fullscreen { background: #6ccdff; color: #000000;}
+    .navigation-fullscreen ul li a { color: #000000;}
+    .navigation-fullscreen ul li a:hover { color: #FFFF00;}

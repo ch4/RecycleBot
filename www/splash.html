@@ -1,0 +1,25 @@
+<html>
+<head>
+	<style>
+		body {
+            background-image: url(img/welcomeScreen.png);
+            background-position: 0px 0px;  
+            width:98%;
+            height:auto;
+            background-size: cover;
+        }
+	</style>
+    
+	<script src='intelxdk.js'></script>
+    <script type="application/javascript">
+        intel.xdk.device.hideStatusBar();
+        intel.xdk.device.hideSplashScreen();
+        setTimeout(function(){ 
+                window.location.replace("index.html");
+            },2000);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
