@@ -13,6 +13,7 @@
 	<script src='intelxdk.js'></script>
     <script type="application/javascript" src="js/jquery.min.js"></script>
     <script type="application/javascript" src="js/bamboo.0.1.js"></script>
+    <script type="application/javascript" src="js/hammer.min.js"></script>
 	<script type="text/javascript">
         var site = new Bamboo();
 		/* This code is used to run as soon as Intel activates */
@@ -33,6 +34,10 @@
         }
         div {
             font-family: OrganicFridays;
+        }
+        .navigation {
+            font-family: OrganicFridays;
+            font-size: 20pt;
         }
         
         a:link {text-decoration:none;}
@@ -230,18 +235,27 @@
 	<!-- content goes here-->    
     <nav id="main-nav" class="navigation overflow">
         <ul>
-          <li><a href="#">Email</a></li>
-          <li><a href="#">Twitter</a></li>
-          <li><a href="#">Facebook</a></li>
-          <li><a href="#">Pinterest</a></li>
-          <li><a href="#">Imgur</a></li>
-          <li><a href="#">Flickr</a></li>
+            <li><a href="#">Email</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Pinterest</a></li>
+            <li><a href="#">Imgur</a></li>
+            <li><a href="#">Flickr</a></li>
+        </ul>
+    </nav>
+    <nav id="shop-nav" class="navigation navigation-fullscreen overflow">
+        Buy some schwag!
+        <ul>
+            <li><a href="#">3D-printed Bot!</a></li>
+            <li><a href="#">T-shirt!</a></li>
+            <li><a href="#">Stickers!</a></li>
+            <li style="position:fixed;bottom:0;width:100%;"><a href="#" onclick="$('#shop-nav').hide();">Done</a></li>
         </ul>
     </nav>
     <div id="container">
         <div id="navbuttons">
             <div id="navbutton-1" class="nav-button" onclick="$('#main-nav').show();" style="background-image: url(img/share.png);"></div>
-            <div id="navbutton-2" class="nav-button" onclick="" style="background-image: url(img/robogear.png); float: right;"></div>
+            <div id="navbutton-2" class="nav-button" onclick="$('#shop-nav').show();" style="background-image: url(img/robogear.png); float: right;"></div>
         </div>
 
         <div id="name" onclick="TapThreeTimesToReset();"><span>Master Shambler</span></div>
@@ -324,6 +338,21 @@
                 tapToReset = 0;
             }
         }
+        
+        setInterval(function(){
+            var randNum = Math.round(Math.random()*2+1);
+            if(randNum == 1){
+                (new Audio("audio/Pioneer_disconnect_beep.wav")).play();
+            } else if(randNum == 2) {
+                (new Audio("audio/Pioneer_stall_beep.wav")).play();
+            } else{
+                (new Audio("audio/Pioneer_connect_beep.wav")).play();
+            }
+            $("#botgraphic-img").css("bottom","20px");
+            setTimeout(function(){
+                $("#botgraphic-img").css("bottom","10px");
+            },1000);
+        },5000);
         
     </script>
 </html>
