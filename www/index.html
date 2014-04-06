@@ -214,7 +214,7 @@
         }
         
         function UpdateLevel(){
-            var levelNum = totalPoints/10;
+            var levelNum = Math.floor(totalPoints/10);
             $("#levelNumber").text(levelNum.toFixed(0));
         }
         
