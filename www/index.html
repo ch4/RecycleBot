@@ -17,7 +17,7 @@
 		var onDeviceReady=function(){
 		      //hide splash screen
             intel.xdk.device.hideSplashScreen();
-            UpdateLevel();
+            LoadStats();
 		};
 		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 	</script>
@@ -166,12 +166,50 @@
             box-shadow: 0 0 3px gray;
             font-size:20px;
             font-weight:bold;
+            
+            background-size: auto 45px;
+            background-repeat: no-repeat;
+            background-position:center; 
         }
+        .round-button:active {
+            background: #ff6b4b;
+            background-size: auto 45px;
+            background-repeat: no-repeat;
+            background-position:center; 
+        }
+/*
         .round-button:hover {
-            background: #262626;
+            background-size: auto 50px;
         }
+*/
+
         /* recycling material buttons */
         
+        /* navbuttons */
+        .nav-button {
+            margin: 0 auto;
+            display:inline-block;
+            width:60px;
+            height:60px;
+            line-height:60px;
+/*            border: 2px solid #f5f5f5;
+            border-radius: 50%; */
+            color:#f5f5f5;
+            text-align:center;
+            text-decoration:none;
+/*            background: #464646;*/
+/*            box-shadow: 0 0 3px gray;*/
+            font-size:20px;
+            font-weight:bold;
+            
+            background-size: 40px 40px;
+            background-repeat: no-repeat;
+            background-position:center; 
+        }
+        .nav-button:hover {
+            background-size: 45px auto;
+        }
+        /* end navbuttons */
     </style>
 </head>
 <body>
@@ -187,14 +225,12 @@
         <a id="navbutton-1" onclick="" href="#">Share</a>
         <a id="navbutton-2" onclick="" style="float:right;" href="#">RoboGear</a>
 -->
-        <div id="navbutton-1" onclick="" style="background-image: url(img/share.png);
-            background-position: 0px 0px;
-            background-repeat: repeat-x;"></div>
-        <span id="navbutton-2" onclick="" style="float:right;"></span>
+        <div id="navbutton-1" class="nav-button" onclick="" style="background-image: url(img/share.png);"></div>
+        <div id="navbutton-2" class="nav-button" onclick="" style="background-image: url(img/robogear.png); float: right;"></div>
     </div>
     
     
-    <div id="name"><span>Master Shambler</span></div>
+    <div id="name" onclick="TapThreeTimesToReset()"><span>Master Shambler</span></div>
     
     
     <div id="experiencebar">
@@ -209,10 +245,10 @@
     
     
     <div id="recyclebuttons">
-        <a href="#" onclick="AddPoints(Math.round(Math.random()*5+1))" class="round-button">1</a>
-        <a href="#" onclick="AddPoints(1)" class="round-button">2</a>
-        <a href="#" onclick="AddPoints(3.5)" class="round-button">3</a>
-        <a href="#" onclick="AddPoints(1.5)" class="round-button">4</a>
+        <a href="#" onclick="AddPoints(Math.round(Math.random()*5+1))" class="round-button" style="background-image: url(img/CARDBOARD.png);"></a>
+        <a href="#" onclick="AddPoints(1)" class="round-button" style="background-image: url(img/aluminum.png);"></a>
+        <a href="#" onclick="AddPoints(3.5)" class="round-button" style="background-image: url(img/plastic.png);"></a>
+        <a href="#" onclick="AddPoints(1.5)" class="round-button" style="background-image: url(img/glass.png);"></a>
     </div>
 </body>
     <script type="text/javascript">
@@ -220,12 +256,14 @@
         var robotLevel = 0;
         var progressBarPercentage = 0;
         var POINTS_PER_LEVEL = 20;
+        var tapToReset = 0;
         
         function AddPoints(points){
             totalPoints += points;   
             UpdateLevel();
             UpdateProgressBar();
             UpdateRoboPic();
+            SaveStats();
         }
         
         function UpdateLevel(){
@@ -241,7 +279,35 @@
         function UpdateRoboPic(){
             if(robotLevel >= 1){
                 $("#botgraphic-img").attr("src","img/botPhase2.png");
+            } else {
+                $("#botgraphic-img").attr("src","img/botPhase1.png");
             }
         }
+        
+        function SaveStats(){
+            localStorage.setItem("totalPoints", totalPoints);   
+        }
+        
+        function LoadStats(){
+            var localStorageValue = localStorage.getItem("totalPoints");
+            totalPoints = (localStorageValue == null || localStorageValue == "null") ? 0 : parseInt(localStorageValue); 
+            UpdateLevel();
+            UpdateProgressBar();
+            UpdateRoboPic();
+        }
+        
+        function ResetStats() {
+            totalPoints = 0;
+            SaveStats();
+            LoadStats();
+        }
+        
+        function TapThreeTimesToReset(){
+            tapToReset++;
+            if(tapToReset > 2){
+                ResetStats();   
+            }
+        }
+        
     </script>
 </html>
