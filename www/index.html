@@ -22,6 +22,14 @@
 		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 	</script>
     <style>
+        @font-face {
+            font-family: OrganicFridays;
+            src: url(fonts/OrganicFridays.ttf);
+        }
+        div {
+            font-family: OrganicFridays;
+        }
+        
         a:link {text-decoration:none;}
         a:visited {text-decoration:none;}
         a:hover {text-decoration:underline;}
@@ -209,23 +217,71 @@
         .nav-button:hover {
             background-size: 45px auto;
         }
+        .share-nav {
+          position: fixed;
+          top: 0;
+          width: 0;
+          height: 100%;
+          background: #3B3B3B;
+          overflow-y: auto;
+          transition: width 0.3s ease;
+          a {
+            display: block;
+            background: linear-gradient(#3E3E3E, #383838);
+            border-top: 1px solid #484848;
+            border-bottom: 1px solid #2E2E2E;
+            color: white;
+            padding: 15px;
+            &:hover, &:focus {
+              background: linear-gradient(#484848, #383838);
+            }
+          }
+          &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 34px;
+            background: linear-gradient(left, rgba(black, 0), rgba(black, 0.4));
+          }
+        }
+        #share-nav:target {
+          width: 20%;
+        }
+        #share-nav:target + .page-wrap {
+          width: 80%;
+          .open-menu {
+             display: none; 
+          }
+          .close-menu {
+             display: block;
+          }
+          .main-header {
+            width: 80%;
+            left: 20%;
+          }
+        }
         /* end navbuttons */
     </style>
 </head>
 <body>
 	<!-- content goes here-->    
-<!--
-    <div id="background">
-        <img src="img/scrollBG.png" class="stretch" alt="" />
-    </div>
--->
+    <nav class="share-nav" id="share-nav">
+      <a href="#">Email</a>
+      <a href="#">Twitter</a>
+      <a href="#">Facebook</a>
+      <a href="#">Pinterest</a>
+      <a href="#">Imgur</a>
+      <a href="#">Flickr</a>
+    </nav>
     
     <div id="navbuttons">
 <!--
         <a id="navbutton-1" onclick="" href="#">Share</a>
         <a id="navbutton-2" onclick="" style="float:right;" href="#">RoboGear</a>
 -->
-        <div id="navbutton-1" class="nav-button" onclick="" style="background-image: url(img/share.png);"></div>
+        <div id="navbutton-1" class="nav-button open-share" onclick="" style="background-image: url(img/share.png);"></div>
         <div id="navbutton-2" class="nav-button" onclick="" style="background-image: url(img/robogear.png); float: right;"></div>
     </div>
     
@@ -259,6 +315,7 @@
         var tapToReset = 0;
         
         function AddPoints(points){
+            (new Audio("audio/score.wav")).play();
             totalPoints += points;   
             UpdateLevel();
             UpdateProgressBar();
@@ -268,6 +325,9 @@
         
         function UpdateLevel(){
             robotLevel = Math.floor(totalPoints/POINTS_PER_LEVEL);
+            if(robotLevel.toFixed(0) > parseInt($("#levelNumber").text())){
+                (new Audio("audio/levelup.wav")).play();
+            }
             $("#levelNumber").text(robotLevel.toFixed(0));
         }
         
@@ -305,7 +365,8 @@
         function TapThreeTimesToReset(){
             tapToReset++;
             if(tapToReset > 2){
-                ResetStats();   
+                ResetStats();  
+                tapToReset = 0;
             }
         }
         
