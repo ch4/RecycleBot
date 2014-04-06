@@ -13,7 +13,7 @@
 	<script src='intelxdk.js'></script>
     <script type="application/javascript" src="js/jquery.min.js"></script>
     <script type="application/javascript" src="js/bamboo.0.1.js"></script>
-    <script type="application/javascript" src="js/hammer.min.js"></script>
+
 	<script type="text/javascript">
         var site = new Bamboo();
 		/* This code is used to run as soon as Intel activates */
@@ -245,9 +245,9 @@
     <nav id="shop-nav" class="navigation navigation-fullscreen overflow">
         Gear Up!
         <ul>
-            <li><div id="navbutton-1" class="nav-button" onclick="" style="background-image: url(img/3d_printer-512.png);"></div><a href="#">3D-print Your Bot!</a></li>
-            <li><div id="navbutton-1" class="nav-button" onclick="" style="background-image: url(img/t-shirt-512.png);"></div><a href="#">Robot T-shirt!</a></li>
-            <li><div id="navbutton-1" class="nav-button" onclick="" style="background-image: url(img/robot-512.png);"></div><a href="#">Robot Stickers!</a></li>
+            <li><div id="navbutton-1" class="nav-button" onclick="" style="background-image: url(img/3d_printer-512.png);"></div><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=S9AM65A9XNSEJ">3D-print Your Bot!</a></li>
+            <li><div id="navbutton-1" class="nav-button" onclick="" style="background-image: url(img/t-shirt-512.png);"></div><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ELWF2CBEX4XW">Robot T-shirt!</a></li>
+            <li><div id="navbutton-1" class="nav-button" onclick="" style="background-image: url(img/robot-512.png);"></div><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VLL5H8JCYDZLJ">Robot Stickers!</a></li>
             <li style="position:fixed;bottom:0;width:100%;"><a href="#" onclick="$('#shop-nav').hide();">Back</a></li>
         </ul>
     </nav>
@@ -336,7 +336,8 @@
                 ResetStats();  
                 tapToReset = 0;
             }
-        }
+        }        
+        
         
         setInterval(function(){
             var randNum = Math.round(Math.random()*2+1);
