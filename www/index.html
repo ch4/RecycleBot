@@ -181,16 +181,18 @@
     
     
     <div id="recyclebuttons">
-        <button id="recycle-item-1" onclick="AddPoints(1)">Glass</button>
-        <button id="recycle-item-2" onclick="AddPoints(2)">Plastic</button>
-        <button id="recycle-item-3" onclick="AddPoints(3)">Paper</button>
-        <button id="recycle-item-4" onclick="AddPoints(4)">Aluminum</button>
+        <button id="recycle-item-1" onclick="AddPoints(glassPoints)">Glass</button>
+        <button id="recycle-item-2" onclick="AddPoints(1)">Plastic</button>
+        <button id="recycle-item-3" onclick="AddPoints(3.5)">Paper</button>
+        <button id="recycle-item-4" onclick="AddPoints(1.5)">Aluminum</button>
     </div>
 </body>
     <script type="text/javascript">
         var totalPoints = 0;
         var robotLevel = 0;
         var progressBarPercentage = 0;
+        var glassPoints = Math.round(Math.random()*5+1)
+        
         
         function AddPoints(points){
             totalPoints += points;   
