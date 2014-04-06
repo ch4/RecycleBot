@@ -12,17 +12,20 @@
 	</style>
 	<script src='intelxdk.js'></script>
     <script type="application/javascript" src="js/jquery.min.js"></script>
-    <script type="application/javascript" src="js/jquery.jpanelmenu.min.js"></script>
+    <script type="application/javascript" src="js/bamboo.0.1.js"></script>
 	<script type="text/javascript">
+        var site = new Bamboo();
 		/* This code is used to run as soon as Intel activates */
 		var onDeviceReady=function(){
 		      //hide splash screen
             intel.xdk.device.hideSplashScreen();
-            var jPM = $.jPanelMenu();
+            
             LoadStats();
+            
 		};
 		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 	</script>
+    <link rel="stylesheet" type="text/css" href="css/bamboo.css">
     <style>
         @font-face {
             font-family: OrganicFridays;
@@ -220,32 +223,43 @@
             background-size: 45px auto;
         }
         /* end navbuttons */
+        
     </style>
 </head>
 <body>
 	<!-- content goes here-->    
-   
-    
-    <div id="navbuttons">
-        <div id="navbutton-1" class="nav-button open-share" onclick="" style="background-image: url(img/share.png);"></div>
-        <div id="navbutton-2" class="nav-button" onclick="" style="background-image: url(img/robogear.png); float: right;"></div>
-    </div>
-    
-    <div id="name" onclick="TapThreeTimesToReset()"><span>Master Shambler</span></div>
-    
-    <div id="experiencebar">
-        <div id="progressbar"><div id="progress" ></div><div id="level" style="margin-left:49%;margin-right:49%;position:absolute;"><span id="levelNumber"></span></div></div>
-    </div>
-    
-    <div id="botgraphic">
-        <img id="botgraphic-img" class="wobble" src="img/botPhase1.png">
-    </div>
-    
-    <div id="recyclebuttons">
-        <a href="#" onclick="AddPoints(Math.round(Math.random()*5+1))" class="round-button" style="background-image: url(img/CARDBOARD.png);"></a>
-        <a href="#" onclick="AddPoints(1)" class="round-button" style="background-image: url(img/aluminum.png);"></a>
-        <a href="#" onclick="AddPoints(3.5)" class="round-button" style="background-image: url(img/plastic.png);"></a>
-        <a href="#" onclick="AddPoints(1.5)" class="round-button" style="background-image: url(img/glass.png);"></a>
+    <nav id="main-nav" class="navigation overflow">
+        <ul>
+          <li><a href="#">Email</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Pinterest</a></li>
+          <li><a href="#">Imgur</a></li>
+          <li><a href="#">Flickr</a></li>
+        </ul>
+    </nav>
+    <div id="container">
+        <div id="navbuttons">
+            <div id="navbutton-1" class="nav-button" onclick="$('#main-nav').show();" style="background-image: url(img/share.png);"></div>
+            <div id="navbutton-2" class="nav-button" onclick="" style="background-image: url(img/robogear.png); float: right;"></div>
+        </div>
+
+        <div id="name" onclick="TapThreeTimesToReset();"><span>Master Shambler</span></div>
+
+        <div id="experiencebar">
+            <div id="progressbar"><div id="progress" ></div><div id="level" style="margin-left:49%;margin-right:49%;position:absolute;"><span id="levelNumber"></span></div></div>
+        </div>
+
+        <div id="botgraphic" onclick="$('#main-nav').hide();">
+            <img id="botgraphic-img" class="wobble" src="img/botPhase1.png">
+        </div>
+
+        <div id="recyclebuttons">
+            <a href="#" onclick="AddPoints(Math.round(Math.random()*5+1))" class="round-button" style="background-image: url(img/CARDBOARD.png);"></a>
+            <a href="#" onclick="AddPoints(1)" class="round-button" style="background-image: url(img/aluminum.png);"></a>
+            <a href="#" onclick="AddPoints(3.5)" class="round-button" style="background-image: url(img/plastic.png);"></a>
+            <a href="#" onclick="AddPoints(1.5)" class="round-button" style="background-image: url(img/glass.png);"></a>
+        </div>
     </div>
 </body>
     <script type="text/javascript">
