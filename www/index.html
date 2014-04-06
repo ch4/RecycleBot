@@ -49,7 +49,7 @@
         #recyclebuttons {
             margin-left: auto;
             margin-right: auto;
-            width: 98%;
+            width: 95%;
 /*            font-size: 50pt;*/
             position: absolute; 
             bottom: 5px;
@@ -108,12 +108,12 @@
         
         /* background image */
         @keyframes animatedBackground {
-            from { background-position: 100% 0; }
+            from { background-position: 115% 0; }
             to { background-position: 0 0; }
         }
         
         @-webkit-keyframes animatedBackground { 
-            from { background-position: 100% 0; }
+            from { background-position: 115% 0; }
             to { background-position: 0 0; }
         }
         
@@ -183,8 +183,14 @@
 -->
     
     <div id="navbuttons">
+<!--
         <a id="navbutton-1" onclick="" href="#">Share</a>
         <a id="navbutton-2" onclick="" style="float:right;" href="#">RoboGear</a>
+-->
+        <div id="navbutton-1" onclick="" style="background-image: url(img/share.png);
+            background-position: 0px 0px;
+            background-repeat: repeat-x;"></div>
+        <span id="navbutton-2" onclick="" style="float:right;"></span>
     </div>
     
     
@@ -234,7 +240,7 @@
         
         function UpdateRoboPic(){
             if(robotLevel >= 1){
-                $("#botgraphic-img").source("img/botPhase2.png");
+                $("#botgraphic-img").attr("src","img/botPhase2.png");
             }
         }
     </script>
