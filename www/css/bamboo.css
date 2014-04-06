@@ -16,3 +16,4 @@
     .navigation-sidebar { max-width:100%; display:none; }
     .navigation-fullscreen { max-width:100%; display:none; }
     .navigation-fullscreen ul { list-style: none; padding: 0; margin: 0; width: 100%; position: relative;}
+    .navigation-fullscreen li { text-align: center; }
