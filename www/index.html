@@ -142,10 +142,10 @@
             clear: both;
         }   
         @-webkit-keyframes wobble  {
-            0%  { -webkit-transform:  rotate(0deg) translate(2px, 1px); }
-            20%  { -webkit-transform:  rotate(2deg) translate(-1px, -1px); }
-            50%  { -webkit-transform:  rotate(0deg) translate(2px, 1px); }
-            80%  { -webkit-transform:  rotate(2deg) translate(0px, 2px); }
+            0% { -webkit-transform: rotate(0deg); }
+            20% { -webkit-transform: rotate(2deg); }
+            50% { -webkit-transform: rotate(-2deg); }
+            100% { -webkit-transform: rotate(0deg); }
         }
         .wobble { -webkit-animation: wobble 3s infinite; }
         /* end robot image */
