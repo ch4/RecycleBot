@@ -194,7 +194,7 @@
     
     
     <div id="recyclebuttons">
-        <a href="#" onclick="AddPoints(glassPoints)" class="round-button">1</a>
+        <a href="#" onclick="AddPoints(Math.round(Math.random()*5+1))" class="round-button">1</a>
         <a href="#" onclick="AddPoints(1)" class="round-button">2</a>
         <a href="#" onclick="AddPoints(3.5)" class="round-button">3</a>
         <a href="#" onclick="AddPoints(1.5)" class="round-button">4</a>
@@ -204,7 +204,6 @@
         var totalPoints = 0;
         var robotLevel = 0;
         var progressBarPercentage = 0;
-        var glassPoints = Math.round(Math.random()*5+1)
         
         
         function AddPoints(points){
