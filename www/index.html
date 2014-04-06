@@ -30,8 +30,10 @@
         #name {
             margin-left: auto;
             margin-right: auto;
-            width:100px;
+            width: auto;
             font-size: 30pt;
+            clear: both;
+            text-align: center;
         }
         
         #experiencebar {
@@ -48,7 +50,7 @@
             margin-left: auto;
             margin-right: auto;
             width: 98%;
-            font-size: 50pt;
+/*            font-size: 50pt;*/
             position: absolute; 
             bottom: 5px;
             text-align:center;
@@ -133,12 +135,19 @@
             position: absolute;
             height: 400px;
 /*            margin-right: auto;*/
-            margin-left: 100px;
+            margin-left: 75px;
             width: auto;
-            bottom: 0;
+            bottom: 10px;
             text-align: center;
             clear: both;
         }   
+        @-webkit-keyframes wobble  {
+            0%  { -webkit-transform:  rotate(0deg) translate(2px, 1px); }
+            20%  { -webkit-transform:  rotate(2deg) translate(-1px, -1px); }
+            50%  { -webkit-transform:  rotate(0deg) translate(2px, 1px); }
+            80%  { -webkit-transform:  rotate(2deg) translate(0px, 2px); }
+        }
+        .wobble { -webkit-animation: wobble 3s infinite; }
         /* end robot image */
 
         /* recycling material buttons */    
@@ -189,7 +198,7 @@
     
     
     <div id="botgraphic">
-        <img id="botgraphic-img" src="img/botPhase1.png">
+        <img id="botgraphic-img" class="wobble" src="img/botPhase1.png">
     </div>
     
     
@@ -204,22 +213,29 @@
         var totalPoints = 0;
         var robotLevel = 0;
         var progressBarPercentage = 0;
-        
+        var POINTS_PER_LEVEL = 20;
         
         function AddPoints(points){
             totalPoints += points;   
             UpdateLevel();
             UpdateProgressBar();
+            UpdateRoboPic();
         }
         
         function UpdateLevel(){
-            var levelNum = Math.floor(totalPoints/10);
-            $("#levelNumber").text(levelNum.toFixed(0));
+            robotLevel = Math.floor(totalPoints/POINTS_PER_LEVEL);
+            $("#levelNumber").text(robotLevel.toFixed(0));
         }
         
         function UpdateProgressBar(){
-            progressBarPercentage = (totalPoints % 10) * 10;
+            progressBarPercentage = (totalPoints % POINTS_PER_LEVEL) * (100/POINTS_PER_LEVEL);
             $("#progress").css('width', progressBarPercentage +'%');
+        }
+        
+        function UpdateRoboPic(){
+            if(robotLevel >= 1){
+                $("#botgraphic-img").source("img/botPhase2.png");
+            }
         }
     </script>
 </html>
