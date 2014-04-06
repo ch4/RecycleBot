@@ -11,18 +11,201 @@
 		body { background-color:white; color:black }
 	</style>
 	<script src='intelxdk.js'></script>
+    <script type="application/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript">
 		/* This code is used to run as soon as Intel activates */
 		var onDeviceReady=function(){
-		//hide splash screen
-		intel.xdk.device.hideSplashScreen();
+		      //hide splash screen
+            intel.xdk.device.hideSplashScreen();
+            UpdateLevel();
 		};
 		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 	</script>
+    <style>
+        
+        a:link {text-decoration:none;}
+        a:visited {text-decoration:none;}
+        a:hover {text-decoration:underline;}
+        a:active {text-decoration:underline;}
+        
+        #name {
+            margin-left: auto;
+            margin-right: auto;
+            width:100px;
+            font-size: 30pt;
+        }
+        
+        #experiencebar {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        #botgraphic {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        #recyclebuttons {
+            margin-left: auto;
+            margin-right: auto;
+            width: 98%;
+            font-size: 50pt;
+            position: absolute; 
+            bottom: 0;
+            text-align:center;
+        }
+        
+        #recyclebuttons button {
+            margin: 0 auto;
+        }
+        
+        /*progress bar animations */
+        #progressbar {
+            /*width: 100%;*/
+            height: 20px;
+            background-color: #eee;
+            padding: 2px;
+            margin: .6em 0;
+            border: 1px #000 double;
+            clear: both;
+        }
+
+        #progress {
+            background: #A1C969; /*-- Color of the bar --*/
+            height: 20px;
+            width: 0%;
+            max-width: 100%;
+            float: left;
+            -webkit-animation: progress 2s 1 forwards;
+            -moz-animation: progress 2s 1 forwards;
+            -ms-animation: progress 2s 1 forwards;
+            animation: progress 2s 1 forwards;
+        }
+
+        /*
+        @-webkit-keyframes progress { 
+            from { }
+
+            to { width: 36% } 
+        }
+        
+        @-moz-keyframes progress { 
+            from { }
+
+            to { width: 36% }
+        }
+
+        @-ms-keyframes progress { 
+            from { }
+
+            to { width: 36% }
+        }
+
+        @keyframes progress { 
+            from { }
+
+            to { width: 36% }
+        }*/
+        
+        /* end progress bar animations */
+        
+        /* background image */
+        @keyframes animatedBackground {
+            from { background-position: 100% 0; }
+            to { background-position: 0 0; }
+        }
+        
+        @-webkit-keyframes animatedBackground { 
+            from { background-position: 100% 0; }
+            to { background-position: 0 0; }
+        }
+        
+        body	{ 
+            background-image: url(img/scrollBG.png);
+            background-position: 0px 0px;
+            background-repeat: repeat-x;
+            z-index:-999;
+            
+            animation: animatedBackground 30s linear infinite;
+			-ms-animation: animatedBackground 30s linear infinite;
+			-moz-animation: animatedBackground 30s linear infinite;
+			-webkit-animation: animatedBackground 30s linear infinite;
+        }   
+        /*end background image */
+        
+        /* robot image */
+        #botgraphic	{
+            background-image: url(img/botPhase1.png);
+            background-position: 50% 0px;
+            background-size: 80% 80%; 
+            background-repeat:no-repeat;
+            z-index:-1;
+            
+/*
+            min-height: 100%;
+            min-width: 100%;
+*/
+            bottom: 0;
+            text-align: center;
+        }   
+        /* end robot image */
+/*        html, body { height: 100%; }*/
+    </style>
 </head>
 <body>
-	<!-- content goes here-->
+	<!-- content goes here-->    
+<!--
+    <div id="background">
+        <img src="img/scrollBG.png" class="stretch" alt="" />
+    </div>
+-->
+    
+    <div id="navbuttons">
+        <a id="navbutton-1" onclick="" href="#">Share</a>
+        <a id="navbutton-2" onclick="" style="float:right;" href="#">RoboGear</a>
+    </div>
     
     
+    <div id="name"><span>Charlie</span></div>
+    
+    
+    <div id="experiencebar">
+        <div id="progressbar"><div id="progress" ></div><div id="level" style="margin-left:49%;margin-right:49%;position:absolute;"><span id="levelNumber"></span></div></div>
+<!--        <span>Lv. <span id="levelNumber"></span></span>-->
+    </div>
+    
+    
+    <div id="botgraphic">
+        <span style="height:100%;">&nbsp;</span>
+    </div>
+    
+    
+    <div id="recyclebuttons">
+        <button id="recycle-item-1" onclick="AddPoints(1)">Glass</button>
+        <button id="recycle-item-2" onclick="AddPoints(2)">Plastic</button>
+        <button id="recycle-item-3" onclick="AddPoints(3)">Paper</button>
+        <button id="recycle-item-4" onclick="AddPoints(4)">Aluminum</button>
+    </div>
 </body>
+    <script type="text/javascript">
+        var totalPoints = 0;
+        var robotLevel = 0;
+        var progressBarPercentage = 0;
+        
+        function AddPoints(points){
+            totalPoints += points;   
+            UpdateLevel();
+            UpdateProgressBar();
+        }
+        
+        function UpdateLevel(){
+            var levelNum = totalPoints/10;
+            $("#levelNumber").text(levelNum.toFixed(0));
+        }
+        
+        function UpdateProgressBar(){
+            progressBarPercentage = (totalPoints % 10) * 10;
+            $("#progress").css('width', progressBarPercentage +'%');
+        }
+    </script>
 </html>
